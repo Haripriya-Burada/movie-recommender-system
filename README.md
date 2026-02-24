@@ -55,7 +55,7 @@ movie-recommender-system/
 
 ### 1️⃣ Clone Repository
 
-git clone https://github.com/your-username/movie-recommender-system.git
+git clone https://github.com/Haripriya-Burada/movie-recommender-system
 cd movie-recommender-system
 
 ### 2️⃣ Install Dependencies
