@@ -3,7 +3,7 @@
 A Content-Based Movie Recommendation System built using Python, Machine Learning, and Streamlit.  
 This application recommends top 5 similar movies based on the selected movie.
 
----
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🚀 Features
 
@@ -13,7 +13,7 @@ This application recommends top 5 similar movies based on the selected movie.
 - Fast similarity search using Cosine Similarity
 - Clean Streamlit UI
 
----
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🛠️ Tech Stack
 
@@ -25,7 +25,7 @@ This application recommends top 5 similar movies based on the selected movie.
 - Requests
 - TMDB API
 
----
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 📂 Project Structure
 
@@ -39,7 +39,7 @@ movie-recommender-system/
 ├── setup.sh
 └── .gitignore
 
----
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🧠 How It Works
 
@@ -48,3 +48,55 @@ movie-recommender-system/
 3. Text data is vectorized using CountVectorizer.
 4. Cosine similarity is calculated.
 5. Top 5 similar movies are recommended based on similarity score.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## ⚙️ Installation (Run Locally)
+
+### 1️⃣ Clone Repository
+
+git clone https://github.com/your-username/movie-recommender-system.git
+cd movie-recommender-system
+
+### 2️⃣ Install Dependencies
+
+pip install -r requirements.txt
+
+### 3️⃣ Run Application
+
+streamlit run app.py
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 🔑 TMDB API Setup
+
+1. Create an account at https://www.themoviedb.org/
+2. Generate API key
+3. Replace in app.py:
+
+api_key = "YOUR_TMDB_API_KEY"
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 📦 Requirements
+
+streamlit  
+pandas  
+numpy  
+scikit-learn  
+requests  
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 🔥 Deployment (Streamlit Cloud)
+
+1. Push project to GitHub
+2. Connect repository to Streamlit Cloud
+3. Select app.py
+4. Deploy
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 👨‍💻 Author
+
+Developed by Hari Priya Burada
