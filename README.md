@@ -4,6 +4,11 @@ A Content-Based Movie Recommendation System built using Python, Machine Learning
 This application recommends top 5 similar movies based on the selected movie.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## 🚀 Live Demo
+
+https://movie-recommender-system-cedeuqbqvndfm8g2t53mnh.streamlit.app/
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🚀 Features
 
