@@ -14,6 +14,12 @@ vector = pickle.load(open('vector.pkl','rb'))   # changed to vector
 # -------------------------
 API_KEY = "YOUR_NEW_API_KEY_HERE"   # replace with your key
 
+st.subheader("🔥 Top Trending Movies")
+
+trending = ["Inception", "Oppenheimer", "Avengers", "Interstellar"]
+
+for movie in trending:
+    st.write(movie)
 
 # -------------------------
 # Fetch Poster
