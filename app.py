@@ -1,25 +1,68 @@
 import pickle
 import streamlit as st
 import requests
+import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
 # -------------------------
 # Load Data
 # -------------------------
 movies = pickle.load(open('movie_list.pkl','rb'))
-vector = pickle.load(open('vector.pkl','rb'))   # changed to vector
+vector = pickle.load(open('vector.pkl','rb'))
 
 # -------------------------
 # TMDB API KEY
 # -------------------------
-API_KEY = "YOUR_NEW_API_KEY_HERE"   # replace with your key
+API_KEY = "YOUR_NEW_API_KEY_HERE"  # replace with your key
 
+# -------------------------
+# Page Title
+# -------------------------
+st.title("🎬 Movie Recommender System")
+
+# -------------------------
+# 🔥 Top Trending Section
+# -------------------------
 st.subheader("🔥 Top Trending Movies")
-
 trending = ["Inception", "Oppenheimer", "Avengers", "Interstellar"]
-
 for movie in trending:
     st.write(movie)
+
+st.markdown("---")
+
+# -------------------------
+# 🎭 Genre Filtering (Using TAGS Column)
+# -------------------------
+
+possible_genres = [
+    "Action", "Adventure", "Comedy", "Drama",
+    "Romance", "Thriller", "Horror",
+    "Sci-Fi", "Fantasy", "Crime", "Animation"
+]
+
+selected_genre = st.selectbox(
+    "🎭 Filter by Genre",
+    ["All"] + possible_genres
+)
+
+# Apply filter using tags column
+if selected_genre != "All":
+    filtered_movies = movies[
+        movies['tags'].str.contains(selected_genre.lower(), na=False)
+    ]
+else:
+    filtered_movies = movies
+
+movie_list = filtered_movies['title'].values
+
+# -------------------------
+# Movie Selection
+# -------------------------
+selected_movie = st.selectbox(
+    "🎥 Select a Movie",
+    movie_list,
+    key="movie_selectbox"
+)
 
 # -------------------------
 # Fetch Poster
@@ -44,7 +87,6 @@ def fetch_poster(movie_id):
     except:
         return "https://via.placeholder.com/500x750?text=Error"
 
-
 # -------------------------
 # Recommend Function
 # -------------------------
@@ -56,48 +98,34 @@ def recommend(movie):
 
     index = index_list[0]
 
-    # Dynamic cosine similarity
     similarity_scores = cosine_similarity(
         [vector[index]], vector
     )[0]
 
-    distances = sorted(
-        list(enumerate(similarity_scores)),
-        reverse=True,
-        key=lambda x: x[1]
-    )
+    movie_indices = np.argsort(similarity_scores)[-6:-1][::-1]
 
     recommended_names = []
     recommended_posters = []
 
-    for i in distances[1:6]:
-        movie_id = movies.iloc[i[0]].movie_id
-        recommended_names.append(movies.iloc[i[0]].title)
+    for i in movie_indices:
+        movie_id = movies.iloc[i].movie_id
+        recommended_names.append(movies.iloc[i].title)
         recommended_posters.append(fetch_poster(movie_id))
 
     return recommended_names, recommended_posters
 
-
 # -------------------------
-# Streamlit UI
+# Recommendation Button
 # -------------------------
-st.title("🎬 Movie Recommender System")
-
-movie_list = movies['title'].values
-
-selected_movie = st.selectbox(
-    "Type or select a movie from the dropdown",
-    movie_list,
-    key="movie_selectbox"
-)
-
-if st.button("Show Recommendation", key="recommend_btn"):
+if st.button("Show Recommendation"):
 
     names, posters = recommend(selected_movie)
 
     if len(names) == 0:
         st.error("No recommendations found.")
     else:
+        st.subheader("🎯 Recommended Movies")
+
         cols = st.columns(5)
 
         for i in range(5):
