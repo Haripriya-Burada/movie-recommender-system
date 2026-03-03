@@ -34,15 +34,19 @@ https://movie-recommender-system-cedeuqbqvndfm8g2t53mnh.streamlit.app/
 
 ## 📂 Project Structure
 
+```
 movie-recommender-system/
 │
 ├── app.py
+├── .gitignore
+├── movie-recommender.ipynb
 ├── movies_list.pkl
-├── vector.pkl
 ├── requirements.txt
+├── runtime.txt
 ├── Procfile
 ├── setup.sh
-└── .gitignore
+└── vector.pkl
+```
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
